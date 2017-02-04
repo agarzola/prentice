@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha './!(node_modules)/**/*.test.js'",
-    "certs": "mkdir -p certs && openssl req -x509 -newkey rsa:2048 -keyout certs/key.pem -out certs/cert.pem -days 9999 -nodes",
+    "certs": "mkdir -p certs && openssl req -x509 -newkey rsa:2048 -keyout certs/key.pem -out certs/cert.pem -days 9999 -nodes -subj '/C=US/ST=Fake State/L=Fake City/O=Fakery Network/OU=Fakery Department/CN=fa.ke'",
     "watch": "./node_modules/.bin/nodemon",
     "postinstall": "npm run certs"
   },
