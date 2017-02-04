@@ -7,6 +7,7 @@
   "scripts": {
     "test": "./node_modules/.bin/mocha './!(node_modules)/**/*.test.js'",
     "certs": "mkdir -p certs && openssl req -x509 -newkey rsa:2048 -keyout certs/key.pem -out certs/cert.pem -days 9999 -nodes",
+    "watch": "./node_modules/.bin/nodemon",
     "postinstall": "npm run certs"
   },
   "repository": {
@@ -19,6 +20,7 @@
   "devDependencies": {
     "mocha": "^3.2.0",
     "node-mocks-http": "^1.5.6",
+    "nodemon": "^1.11.0",
     "should": "^11.2.0",
     "sinon": "^1.17.7"
   }
