@@ -1,4 +1,5 @@
 var check_day = require('../lib/check_day')
+var check_hunt_dates = require('../lib/check_hunt_dates')
 
 module.exports = route
 
@@ -12,6 +13,7 @@ function route (req, res) {
   res.setHeader('Content-Type', 'text/html')
 
   check_day(right_now)
+  .then(() => check_hunt_dates(right_now))
   .then(() => {
     res.end('YES') })
   .catch(e => {
