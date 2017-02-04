@@ -2,6 +2,10 @@ var check_day = require('../lib/check_day')
 var check_hunt_dates = require('../lib/check_hunt_dates')
 var check_daylight = require('../lib/check_daylight')
 
+var pug = require('pug')
+var fs = require('fs')
+var template = pug.compileFile('./views/index.pug')
+
 module.exports = route
 
 function route (req, res) {
@@ -17,8 +21,18 @@ function route (req, res) {
   .then(() => check_hunt_dates(right_now))
   .then(() => check_daylight(right_now))
   .then(() => {
-    res.end('YES') })
+    res.end(template({ open: true })) })
   .catch(e => {
-    console.log(e)
-    res.end('NO') })
+    var reason
+    switch (e.message) {
+      case 'DAY_FAIL':
+        reason = 'Today is not Thursday, Friday, or Saturday.'
+        break
+      case 'DAYLIGHT_FAIL':
+        reason = 'The sun is not out.'
+        break
+      case 'HUNT_DATE_FAIL':
+        reason = 'There is a managed hunt today.'
+    }
+    res.end(template({ open: false, reason: reason })) })
 }

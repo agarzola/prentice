@@ -1,0 +1,8 @@
+doctype html
+html
+  head
+    title #{open ? 'Yes' : 'No'}, Prentice Cooper Shooting Range #{open ? 'is' : 'is not'} open right now.
+  body
+    h1 #{open ? 'Yes' : 'No'}, Prentice Cooper Shooting Range #{open ? 'is' : 'is not'} open right now.
+    if reason
+      p= reason
